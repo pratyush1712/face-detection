@@ -6,4 +6,4 @@ A Flask+React based application that utilizes Haar Cascade model to detect faces
 - Flask for the backend (on run, flask application renders the index.html file in the React Build Folder)
 - Heroku for deployement
 
-### <a href="https://cornell-detection.herokuapp.com/">Located Here</a>
+### <a href="https://cornell-detection.herokuapp.com/" target="_blank">Located Here</a>
