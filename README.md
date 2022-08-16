@@ -8,6 +8,7 @@ A Flask+React based application that utilizes Haar Cascade model to detect faces
 
 ## Steps to run on a local server
 - ```git clone https://github.com/pratyush1712/face-detection.git```
+- ```cd face-detection```
 - ```cd backend```
 - ```gunicorn --bind localhost:3000 app:app```
 
