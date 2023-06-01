@@ -5,10 +5,8 @@ from PIL import Image
 from numpy import asarray
 import os
 import json
-from flask_cors import CORS, cross_origin
 
 app = Flask(__name__, static_folder="../frontend/build", static_url_path="")
-cors = CORS(app)
 camera = cv2.VideoCapture(-0, cv2.CAP_DSHOW)
 app.config["CORS_HEADERS"] = "Content-Type"
 
@@ -19,13 +17,11 @@ eyesDetector = cv2.CascadeClassifier("Haarcascades/haarcascade_eye.xml")
 
 # -----------------routes---------------------------------
 @app.route("/")
-@cross_origin()
 def index():
     return app.send_static_file("index.html")
 
 
 @app.route("/video")
-@cross_origin()
 def video():
     return Response(getImages(), mimetype="multipart/x-mixed-replace; boundary=frame")
 
@@ -47,7 +43,7 @@ def getImages():
 
 
 def errorImage():
-    img = Image.open("testing.jpg")
+    img = Image.open("notFound.jpg")
     img = asarray(img)
     ret, buffer = cv2.imencode(".jpg", img)
     frame = buffer.tobytes()
@@ -74,6 +70,5 @@ def build_response(statusCode, key, val):
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=True, host="localhost", port=2022)
     # app.run(debug=True, host="localhost", port=2001)
